@@ -116,17 +116,32 @@
 
             if (skibidiButton.disabled) return;
 
-            var rand = Math.floor(Math.random() * 30); // Generate a random number between 0 and 29
+            // Define a counter variable
+            var counter = 0;
             
-            // Define messages based on probability
-            var message;
-            if (rand) {
-                message = "Autistic ass"; // 1 in 10 chance
-            } else if (rand) {
-                message = "Elisa 😳"; // 1 in 3 chance
-            } else if (rand) {
-                message = "No bitches"; // Remaining cases
+            function displayNextMessage() {
+    // Increment the counter
+                counter++;
+
+    // Define messages based on the value of the counter
+                var message;
+                if (counter === 1) {
+                    message = "Autistic ass";
+                } else if (counter === 2) {
+                    message = "Elisa 😳";
+                } else {
+                    message = "No bitches";
+                }
+                
+                // Display the message
+                console.log(message);
             }
+
+// Example usage
+displayNextMessage(); // Outputs "Autistic sigma"
+displayNextMessage(); // Outputs "Elisa 😳"
+displayNextMessage(); // Outputs "No sigma"
+
             
             // Display message
             messageDiv.innerText = message;
