@@ -108,7 +108,9 @@
     </div>
 
     <script>
-        function displayRandomMessage() {
+        var counter = 0;
+
+        function displayNextMessage() {
             var messageDiv = document.getElementById("message");
             var rainDiv = document.querySelector(".rain");
             var emojis = document.querySelectorAll(".emoji");
@@ -116,39 +118,22 @@
 
             if (skibidiButton.disabled) return;
 
-            // Define a counter variable
-            var counter = 0;
-            
-            function displayNextMessage() {
-    // Increment the counter
-                counter++;
+            counter++;
 
-    // Define messages based on the value of the counter
-                var message;
-                if (counter === 1) {
-                    message = "Autistic ass";
-                } else if (counter === 2) {
-                    message = "Elisa 😳";
-                } else {
-                    message = "No bitches";
-                }
-                
-                // Display the message
-                console.log(message);
+            var message;
+            if (counter === 1) {
+                message = "Autistic ass";
+            } else if (counter === 2) {
+                message = "Elisa 😳";
+            } else {
+                message = "No bitches";
             }
 
-// Example usage
-displayNextMessage(); // Outputs "Autistic sigma"
-displayNextMessage(); // Outputs "Elisa 😳"
-displayNextMessage(); // Outputs "No sigma"
-
-            
-            // Display message
             messageDiv.innerText = message;
-            messageDiv.style.opacity = "1"; // Reset opacity
-            messageDiv.style.animation = "none"; // Reset animation
+            messageDiv.style.opacity = "1";
+            messageDiv.style.animation = "none";
             setTimeout(function() {
-                messageDiv.style.animation = ""; // Restart animation
+                messageDiv.style.animation = "";
             }, 10);
 
             // Trigger rain animation
