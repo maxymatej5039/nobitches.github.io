@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -88,7 +88,7 @@
 <body>
     <div class="container">
         <h1>Click the button to reveal the truth about Klaus</h1>
-        <button id="skibidiButton" onclick="displayRandomMessage()">Click me for free skibidi</button>
+        <button id="skibidiButton" onclick="displayNextMessage()">Click me for free skibidi</button>
         <div id="message"></div>
     </div>
     <div class="rain-container">
@@ -122,7 +122,7 @@
 
             var message;
             if (counter === 1) {
-                message = "Autistic ass";
+                message = "Klaus is gay";
             } else if (counter === 2) {
                 message = "Elisa 😳";
             } else {
@@ -136,13 +136,11 @@
                 messageDiv.style.animation = "";
             }, 10);
 
-            // Trigger rain animation
-            rainDiv.style.animation = "none"; // Reset animation
+            rainDiv.style.animation = "none";
             setTimeout(function() {
-                rainDiv.style.animation = "rainAnimation 8s linear infinite"; // Restart animation
+                rainDiv.style.animation = "rainAnimation 8s linear infinite";
             }, 10);
 
-            // Trigger emoji animations
             emojis.forEach(function(emoji) {
                 emoji.style.animation = "none"; // Reset animation
                 setTimeout(function() {
