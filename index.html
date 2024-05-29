@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skibidi Button</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background-image: url('https://www.transparenttextures.com/patterns/white-wood.png'); /* Textured background */
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            position: relative;
+            z-index: 1;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #message {
+            margin-top: 10px;
+            font-size: 18px;
+            animation: flyAndDisappear 1s forwards;
+            opacity: 0;
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        @keyframes flyAndDisappear {
+            0% { top: -50px; opacity: 0; }
+            80% { top: 10px; opacity: 1; }
+            100% { top: 20px; opacity: 0; }
+        }
+        .rain-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .rain {
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            width: calc(100% + 60px);
+            height: calc(100% + 60px);
+            animation: rainAnimation 8s linear infinite;
+        }
+        .emoji {
+            position: absolute;
+            opacity: 1;
+        }
+        @keyframes rainAnimation {
+            0% { transform: translateY(-30px) translateX(-30px); }
+            100% { transform: translateY(110vh) translateX(110vw); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Click the button to reveal the truth about Drag</h1>
+        <button id="skibidiButton" onclick="displayRandomMessage()">Click me for free skibidi</button>
+        <div id="message"></div>
+    </div>
+    <div class="rain-container">
+        <div class="rain">
+            <div class="emoji" style="top: 50%; left: 50%;">👿</div>
+            <div class="emoji" style="top: 20%; left: 20%;">👿</div>
+            <div class="emoji" style="top: 80%; left: 80%;">👿</div>
+            <div class="emoji" style="top: 10%; left: 90%;">👿</div>
+            <div class="emoji" style="top: 70%; left: 30%;">👿</div>
+            <div class="emoji" style="top: 40%; left: 60%;">👿</div>
+            <div class="emoji" style="top: 90%; left: 10%;">👿</div>
+            <div class="emoji" style="top: 60%; left: 70%;">👿</div>
+            <div class="emoji" style="top: 30%; left: 40%;">👿</div>
+            <div class="emoji" style="top: 85%; left: 55%;">👿</div>
+            <div class="emoji" style="top: 15%; left: 75%;">👿</div>
+        </div>
+    </div>
+
+    <script>
+        function displayRandomMessage() {
+            var messageDiv = document.getElementById("message");
+            var rainDiv = document.querySelector(".rain");
+            var emojis = document.querySelectorAll(".emoji");
+            var skibidiButton = document.getElementById("skibidiButton");
+
+            if (skibidiButton.disabled) return;
+
+            var rand = Math.floor(Math.random() * 30); // Generate a random number between 0 and 29
+            
+            // Define messages based on probability
+            var message;
+            if (rand < 10) {
+                message = "Drag is a sigma"; // 1 in 10 chance
+            } else if (rand < 13) {
+                message = "Drag is a beta"; // 1 in 3 chance
+            } else {
+                message = "Drag is an alpha"; // Remaining cases
+            }
+
+            // Display message
+            messageDiv.innerText = message;
+            messageDiv.style.opacity = "1"; // Reset opacity
+            messageDiv.style.animation = "none"; // Reset animation
+            setTimeout(function() {
+                messageDiv.style.animation = ""; // Restart animation
+            }, 10);
+
+            // Trigger rain animation
+            rainDiv.style.animation = "none"; // Reset animation
+            setTimeout(function() {
+                rainDiv.style.animation = "rainAnimation 8s linear infinite"; // Restart animation
+            }, 10);
+
+            // Trigger emoji animations
+            emojis.forEach(function(emoji) {
+                emoji.style.animation = "none"; // Reset animation
+                setTimeout(function() {
+                    emoji.style.animation = "rainAnimation 8s linear infinite"; // Restart animation
+                }, 10);
+            });
+
+            // Disable button for 2 seconds
+            skibidiButton.disabled = true;
+            var countDown = 2;
+            var interval = setInterval(function() {
+                skibidiButton.innerText = "Please wait (" + countDown + "s)";
+                countDown--;
+                if (countDown < 0) {
+                    clearInterval(interval);
+                    skibidiButton.disabled = false;
+                    skibidiButton.innerText = "Click me for free skibidi";
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
