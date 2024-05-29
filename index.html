@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -88,7 +88,7 @@
 <body>
     <div class="container">
         <h1>Click the button to reveal the truth about Klaus</h1>
-        <button id="skibidiButton" onclick="displayNextMessage()">Click me for free skibidi</button>
+        <button id="skibidiButton" onclick="displayRandomMessage()">Click me for free skibidi</button>
         <div id="message"></div>
     </div>
     <div class="rain-container">
@@ -108,9 +108,7 @@
     </div>
 
     <script>
-        var counter = 0;
-
-        function displayNextMessage() {
+        function displayRandomMessage() {
             var messageDiv = document.getElementById("message");
             var rainDiv = document.querySelector(".rain");
             var emojis = document.querySelectorAll(".emoji");
@@ -118,29 +116,33 @@
 
             if (skibidiButton.disabled) return;
 
-            counter++;
-
+            var rand = Math.floor(Math.random() * 3); // Generate a random number between 0 and 29
+            
+            // Define messages based on probability
             var message;
-            if (counter === 1) {
-                message = "Klaus is gay";
-            } else if (counter === 2) {
-                message = "Elisa 😳";
+            if (rand < 3) {
+                message = "Autistic"; // 1 in 10 chance
+            } else if (rand < 2) {
+                message = "Elisa 😳"; // 1 in 3 chance
             } else {
-                message = "No bitches";
+                message = "No bitches"; // Remaining cases
             }
-
+            
+            // Display message
             messageDiv.innerText = message;
-            messageDiv.style.opacity = "1";
-            messageDiv.style.animation = "none";
+            messageDiv.style.opacity = "1"; // Reset opacity
+            messageDiv.style.animation = "none"; // Reset animation
             setTimeout(function() {
-                messageDiv.style.animation = "";
+                messageDiv.style.animation = ""; // Restart animation
             }, 10);
 
-            rainDiv.style.animation = "none";
+            // Trigger rain animation
+            rainDiv.style.animation = "none"; // Reset animation
             setTimeout(function() {
-                rainDiv.style.animation = "rainAnimation 8s linear infinite";
+                rainDiv.style.animation = "rainAnimation 8s linear infinite"; // Restart animation
             }, 10);
 
+            // Trigger emoji animations
             emojis.forEach(function(emoji) {
                 emoji.style.animation = "none"; // Reset animation
                 setTimeout(function() {
